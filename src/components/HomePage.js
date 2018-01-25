@@ -1,35 +1,39 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 import ArticleList from "./ArticleList";
+import getAllArticles from "../api";
+
+const { REACT_APP_API_URL } = process.env;
 
 class HomePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      articles: [
-        {
-          id: 1,
-          title: "Article title",
-          body: "body of the article",
-          from_topic: "testing",
-          created_by: "Diego",
-          date: "25-1-2018",
-          votes: 0
-        },
-        {
-          id: 2,
-          title: "Another Article title",
-          body: "Another body of the article",
-          from_topic: "testing",
-          created_by: "Diego",
-          date: "25-1-2018",
-          votes: 0
-        }
-      ]
+      articles: []
     };
   }
+
+  componentDidMount() {
+    this.getAllArticles();
+  }
+
   render() {
     return <ArticleList articles={this.state.articles} />;
+  }
+
+  getAllArticles() {
+    return axios
+      .get(`${REACT_APP_API_URL}/articles`)
+      .then(response => {
+        console.log(response.data);
+        this.setState({
+          articles: response.data
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 }
 
