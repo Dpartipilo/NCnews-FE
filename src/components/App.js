@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-import HomePage from "./HomePage";
 import NavBar from "./NavBar";
+import HomePage from "./HomePage";
+import Topic from "./Topic";
 
 class App extends Component {
   render() {
@@ -12,6 +13,7 @@ class App extends Component {
           <NavBar />
           <Switch>
             <Route exact path="/" component={HomePage} />
+            <Route path="/topics/:name/articles" component={Topic} />
           </Switch>
         </div>
       </BrowserRouter>
