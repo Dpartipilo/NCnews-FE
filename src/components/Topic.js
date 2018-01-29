@@ -38,11 +38,7 @@ class Topic extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <ArticleList articles={this.state.articles} />
-      </div>
-    );
+    return <ArticleList articles={this.state.articles} />;
   }
 }
 
