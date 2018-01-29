@@ -2,12 +2,17 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 import { getArticleById } from "../api";
+import { getAllCommentsByArticle } from "../api";
+
+import CommentList from "./CommentList";
+import Article from "./Article";
 
 class ArticlePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      article: {}
+      article: {},
+      comments: []
     };
   }
 
@@ -23,44 +28,26 @@ class ArticlePage extends Component {
       .catch(err => {
         console.log(err);
       });
+
+    getAllCommentsByArticle(article_id)
+      .then(comments => {
+        this.setState({
+          comments: comments.data
+        });
+        console.log(comments);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   render() {
-    const {
-      created_by,
-      from_topic,
-      title,
-      votes,
-      _id,
-      body
-    } = this.state.article;
+    const { article, comments } = this.state;
     return (
-      <div className="box">
-        {/* top leftside of the article */}
-        <div className="level">
-          <div className="level-left">
-            <div className="level-item">
-              <p>
-                Created by: <strong> {created_by}</strong>
-              </p>
-            </div>
-          </div>
-
-          {/* top right side */}
-          <div className="level-right">
-            <p className="level-item">Topic: {from_topic}</p>
-          </div>
-        </div>
-
-        {/* title of the article */}
-        <div className="content">
-          <Link className="title is-4" to={`/articles/${_id}`}>
-            {title}
-          </Link>
-          <br />
-          <p>{body}</p>
-          <p className="subtitle">votes: {votes}</p>
-        </div>
+      <div className="container box">
+        <Article {...article} />
+        <p className="title is-4"> Last Comments</p>
+        <CommentList comments={comments} />
       </div>
     );
   }
