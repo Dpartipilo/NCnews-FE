@@ -12,3 +12,7 @@ export const getAllTopics = () => {
 export const getAllArticlesByTopic = name => {
   return axios.get(`${REACT_APP_API_URL}/topics/${name}/articles`);
 };
+
+export const getArticleById = article_id => {
+  return axios.get(`${REACT_APP_API_URL}/articles/${article_id}`);
+};
