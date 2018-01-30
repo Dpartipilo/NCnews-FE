@@ -1,8 +1,11 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 
-import { getArticleById } from "../api";
-import { getAllCommentsByArticle } from "../api";
+import {
+  articleVoteUp,
+  articleVoteDown,
+  getArticleById,
+  getAllCommentsByArticle
+} from "../api";
 
 import CommentList from "./CommentList";
 import Article from "./Article";
@@ -41,11 +44,41 @@ class ArticlePage extends Component {
       });
   }
 
+  voteArticleUp = article_id => {
+    articleVoteUp(article_id)
+      .then(res => {
+        // console.log(res);
+        this.setState({
+          article: res.data.article
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  voteArticleDown = article_id => {
+    articleVoteDown(article_id)
+      .then(res => {
+        // console.log(res);
+        this.setState({
+          article: res.data.article
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   render() {
     const { article, comments } = this.state;
     return (
       <div className="container box">
-        <Article {...article} />
+        <Article
+          {...article}
+          handleVoteUp={this.voteArticleUp}
+          handleVoteDown={this.voteArticleDown}
+        />
         <p className="title is-4"> Last Comments</p>
         <CommentList comments={comments} />
       </div>

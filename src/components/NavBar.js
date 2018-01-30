@@ -13,11 +13,10 @@ class NavBar extends Component {
 
   componentDidMount() {
     getAllTopics()
-      .then(res => {
+      .then(topics => {
         this.setState({
-          topics: res.data
+          topics: topics.data
         });
-        console.log(res);
       })
       .catch(err => {
         console.log(err);

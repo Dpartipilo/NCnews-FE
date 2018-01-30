@@ -14,10 +14,10 @@ class Topic extends Component {
   componentDidMount() {
     const { name } = this.props.match.params;
     getAllArticlesByTopic(name)
-      .then(res => {
-        console.log(res);
+      .then(articles => {
+        console.log(articles);
         this.setState({
-          articles: res.data
+          articles: articles.data
         });
       })
       .catch(err => {
