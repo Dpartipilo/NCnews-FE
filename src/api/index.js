@@ -28,3 +28,11 @@ export const articleVoteUp = article_id => {
 export const articleVoteDown = article_id => {
   return axios.put(`${REACT_APP_API_URL}/articles/${article_id}?vote=down`);
 };
+
+export const commentVoteUp = comment_id => {
+  return axios.put(`${REACT_APP_API_URL}/comments/${comment_id}?vote=up`);
+};
+
+export const commentVoteDown = comment_id => {
+  return axios.put(`${REACT_APP_API_URL}/comments/${comment_id}?vote=down`);
+};
