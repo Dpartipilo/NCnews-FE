@@ -41,22 +41,20 @@ class Article extends Component {
           <div className="level-left">
             <span
               onClick={this.submitVoteUp}
+              id="clickable"
               className="icon is-medium  level-item "
             >
-              <a href="#">
-                <i className="far fa-thumbs-up fa-lg" />
-              </a>
+              <i className="far fa-thumbs-up fa-lg" />
             </span>
 
             <p className="level-item ">{votes}</p>
 
             <span
               onClick={this.submitVoteDown}
+              id="clickable"
               className="icon is-medium  level-item"
             >
-              <a href="#">
-                <i className="far fa-thumbs-down fa-lg" />
-              </a>
+              <i className="far fa-thumbs-down fa-lg" />
             </span>
           </div>
         </div>

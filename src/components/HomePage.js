@@ -24,14 +24,14 @@ class HomePage extends Component {
       });
   }
 
-  voteDown = article_id => {
-    articleVoteDown(article_id)
+  voteUp = article_id => {
+    articleVoteUp(article_id)
       .then(res => {
         // console.log(res);
         this.setState({
           articles: this.state.articles.map(article => {
             if (article._id === article_id) {
-              return Object.assign({}, article, { votes: article.votes - 1 });
+              return Object.assign({}, article, { votes: article.votes + 1 });
             }
             return article;
           })
@@ -42,14 +42,14 @@ class HomePage extends Component {
       });
   };
 
-  voteUp = article_id => {
-    articleVoteUp(article_id)
+  voteDown = article_id => {
+    articleVoteDown(article_id)
       .then(res => {
         // console.log(res);
         this.setState({
           articles: this.state.articles.map(article => {
             if (article._id === article_id) {
-              return Object.assign({}, article, { votes: article.votes + 1 });
+              return Object.assign({}, article, { votes: article.votes - 1 });
             }
             return article;
           })

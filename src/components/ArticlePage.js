@@ -3,6 +3,8 @@ import React, { Component } from "react";
 import {
   articleVoteUp,
   articleVoteDown,
+  commentVoteUp,
+  commentVoteDown,
   getArticleById,
   getAllCommentsByArticle
 } from "../api";
@@ -26,7 +28,7 @@ class ArticlePage extends Component {
         this.setState({
           article: article.data
         });
-        console.log(article);
+        // console.log(article);
       })
       .catch(err => {
         console.log(err);
@@ -70,6 +72,42 @@ class ArticlePage extends Component {
       });
   };
 
+  voteCommentUp = comment_id => {
+    commentVoteUp(comment_id)
+      .then(res => {
+        // console.log(res);
+        this.setState({
+          comments: this.state.comments.map(comment => {
+            if (comment._id === comment_id) {
+              return Object.assign({}, comment, { votes: comment.votes + 1 });
+            }
+            return comment;
+          })
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  voteCommentDown = comment_id => {
+    commentVoteDown(comment_id)
+      .then(res => {
+        // console.log(res);
+        this.setState({
+          comments: this.state.comments.map(comment => {
+            if (comment._id === comment_id) {
+              return Object.assign({}, comment, { votes: comment.votes - 1 });
+            }
+            return comment;
+          })
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   render() {
     const { article, comments } = this.state;
     return (
@@ -80,7 +118,11 @@ class ArticlePage extends Component {
           handleVoteDown={this.voteArticleDown}
         />
         <p className="title is-4"> Last Comments</p>
-        <CommentList comments={comments} />
+        <CommentList
+          comments={comments}
+          handleCommentVoteUp={this.voteCommentUp}
+          handleCommentVoteDown={this.voteCommentDown}
+        />
       </div>
     );
   }
