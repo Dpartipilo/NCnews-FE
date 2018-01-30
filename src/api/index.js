@@ -21,6 +21,10 @@ export const getAllCommentsByArticle = article_id => {
   return axios.get(`${REACT_APP_API_URL}/articles/${article_id}/comments`);
 };
 
+export const getUserByUsername = username => {
+  return axios.get(`${REACT_APP_API_URL}/users/${username}`);
+};
+
 export const articleVoteUp = article_id => {
   return axios.put(`${REACT_APP_API_URL}/articles/${article_id}?vote=up`);
 };

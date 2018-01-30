@@ -19,7 +19,10 @@ class Article extends Component {
         <div className="level">
           <div className="level-left">
             <p className="level-item">
-              Created by: <strong> {created_by}</strong>
+              Created by:
+              <Link className="is-bold" to={`/users/${created_by}`}>
+                {created_by}
+              </Link>
             </p>
           </div>
 
