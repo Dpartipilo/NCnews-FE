@@ -10,6 +10,7 @@ const CommentList = props => (
         key={comment._id}
         handleCommentVoteUp={props.handleCommentVoteUp}
         handleCommentVoteDown={props.handleCommentVoteDown}
+        handleDeleteComment={props.handleDeleteComment}
       />
     ))}
   </div>

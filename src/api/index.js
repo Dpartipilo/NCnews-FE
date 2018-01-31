@@ -50,3 +50,7 @@ export const addCommentsToArticle = (article_id, username, body) => {
     from_topic: article_id
   });
 };
+
+export const commentDelete = comment_id => {
+  return axios.delete(`${REACT_APP_API_URL}/comments/${comment_id}`);
+};

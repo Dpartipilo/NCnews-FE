@@ -12,6 +12,11 @@ class Comment extends Component {
     this.props.handleCommentVoteDown(this.props._id);
   };
 
+  SubmitDeleteComment = e => {
+    e.preventDefault();
+    this.props.handleDeleteComment(this.props._id);
+  };
+
   render() {
     const { created_by, created_at, votes, _id, body } = this.props;
     return (
@@ -26,7 +31,7 @@ class Comment extends Component {
               </Link>
             </p>
             <p className="level-item">
-              at {timeFormat(created_at, "dd/MM/yyyy")}
+              on {timeFormat(created_at, "dd/MM/yyyy")}
             </p>
           </div>
         </div>
@@ -56,6 +61,15 @@ class Comment extends Component {
             >
               <i className="far fa-thumbs-down fa-lg" />
             </span>
+          </div>
+
+          <div className="level-right">
+            <button
+              onClick={this.SubmitDeleteComment}
+              className="button is-danger"
+            >
+              Delete
+            </button>
           </div>
         </div>
       </div>

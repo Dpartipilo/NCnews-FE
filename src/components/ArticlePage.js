@@ -7,7 +7,8 @@ import {
   commentVoteDown,
   getArticleById,
   getAllCommentsByArticle,
-  addCommentsToArticle
+  addCommentsToArticle,
+  commentDelete
 } from "../api";
 
 import CommentList from "./CommentList";
@@ -124,6 +125,21 @@ class ArticlePage extends Component {
       });
   };
 
+  deleteComment = comment_id => {
+    commentDelete(comment_id)
+      .then(res => {
+        alert(`Comment has been deleted.`);
+        this.setState({
+          comments: this.state.comments.filter(
+            comment => comment._id !== comment_id
+          )
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   render() {
     const { article, comments } = this.state;
     return (
@@ -142,6 +158,7 @@ class ArticlePage extends Component {
           comments={comments}
           handleCommentVoteUp={this.voteCommentUp}
           handleCommentVoteDown={this.voteCommentDown}
+          handleDeleteComment={this.deleteComment}
         />
       </div>
     );
