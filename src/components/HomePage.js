@@ -14,7 +14,7 @@ class HomePage extends Component {
   componentDidMount() {
     getAllArticles()
       .then(articles => {
-        console.log(articles);
+        // console.log(articles);
         this.setState({
           articles: articles.data
         });
@@ -31,7 +31,7 @@ class HomePage extends Component {
         this.setState({
           articles: this.state.articles.map(article => {
             if (article._id === article_id) {
-              return Object.assign({}, article, { votes: article.votes + 1 });
+              return res.data.article;
             }
             return article;
           })
@@ -49,7 +49,7 @@ class HomePage extends Component {
         this.setState({
           articles: this.state.articles.map(article => {
             if (article._id === article_id) {
-              return Object.assign({}, article, { votes: article.votes - 1 });
+              return res.data.article;
             }
             return article;
           })
@@ -61,9 +61,15 @@ class HomePage extends Component {
   };
 
   render() {
+    let noBodyArticles = this.state.articles.map(article => {
+      for (let key in article) {
+        if (key === "body") article[key] = null;
+      }
+      return article;
+    });
     return (
       <ArticleList
-        articles={this.state.articles}
+        articles={noBodyArticles}
         handleVoteUp={this.voteUp}
         handleVoteDown={this.voteDown}
       />

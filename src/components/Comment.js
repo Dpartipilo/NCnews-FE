@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import { Link } from "react-router-dom";
 import timeFormat from "../utils/timeFormat";
 
 class Comment extends Component {
@@ -20,7 +20,10 @@ class Comment extends Component {
         <div className="level">
           <div className="level-left">
             <p className="level-item">
-              Created by: <strong> {created_by}</strong>
+              Created by:
+              <Link className="is-bold" to={`/users/${created_by}`}>
+                {created_by}
+              </Link>
             </p>
             <p className="level-item">
               at {timeFormat(created_at, "dd/MM/yyyy")}

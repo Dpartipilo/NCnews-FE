@@ -6,11 +6,13 @@ import {
   commentVoteUp,
   commentVoteDown,
   getArticleById,
-  getAllCommentsByArticle
+  getAllCommentsByArticle,
+  addCommentsToArticle
 } from "../api";
 
 import CommentList from "./CommentList";
 import Article from "./Article";
+import NewComment from "./NewComment";
 
 class ArticlePage extends Component {
   constructor(props) {
@@ -39,7 +41,7 @@ class ArticlePage extends Component {
         this.setState({
           comments: comments.data
         });
-        console.log(comments);
+        // console.log(comments);
       })
       .catch(err => {
         console.log(err);
@@ -74,12 +76,12 @@ class ArticlePage extends Component {
 
   voteCommentUp = comment_id => {
     commentVoteUp(comment_id)
-      .then(res => {
+      .then(votedComment => {
         // console.log(res);
         this.setState({
           comments: this.state.comments.map(comment => {
             if (comment._id === comment_id) {
-              return Object.assign({}, comment, { votes: comment.votes + 1 });
+              return votedComment.data.comment;
             }
             return comment;
           })
@@ -92,16 +94,30 @@ class ArticlePage extends Component {
 
   voteCommentDown = comment_id => {
     commentVoteDown(comment_id)
-      .then(res => {
-        // console.log(res);
+      .then(votedComment => {
+        // console.log(votedComment);
         this.setState({
           comments: this.state.comments.map(comment => {
             if (comment._id === comment_id) {
-              return Object.assign({}, comment, { votes: comment.votes - 1 });
+              return votedComment.data.comment;
             }
             return comment;
           })
         });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  AddNewComment = (username, body) => {
+    const article_id = this.state.article._id;
+    addCommentsToArticle(article_id, username, body)
+      .then(comment => {
+        this.setState({
+          comments: [comment.data, ...this.state.comments]
+        });
+        // console.log(comment);
       })
       .catch(err => {
         console.log(err);
@@ -117,7 +133,11 @@ class ArticlePage extends Component {
           handleVoteUp={this.voteArticleUp}
           handleVoteDown={this.voteArticleDown}
         />
+
+        <p className="subtitle">Leave your comments</p>
+        <NewComment handleAddNewComment={this.AddNewComment} />
         <p className="title is-4"> Last Comments</p>
+
         <CommentList
           comments={comments}
           handleCommentVoteUp={this.voteCommentUp}

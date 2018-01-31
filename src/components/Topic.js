@@ -15,7 +15,7 @@ class Topic extends Component {
     const { name } = this.props.match.params;
     getAllArticlesByTopic(name)
       .then(articles => {
-        console.log(articles);
+        // console.log(articles);
         this.setState({
           articles: articles.data
         });
@@ -38,7 +38,13 @@ class Topic extends Component {
   }
 
   render() {
-    return <ArticleList articles={this.state.articles} />;
+    let noBodyArticles = this.state.articles.map(article => {
+      for (let key in article) {
+        if (key === "body") article[key] = null;
+      }
+      return article;
+    });
+    return <ArticleList articles={noBodyArticles} />;
   }
 }
 

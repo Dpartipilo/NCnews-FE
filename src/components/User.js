@@ -28,7 +28,6 @@ class User extends Component {
         <h1 className="title">{user.name}</h1>
         <h3 className="subtitle">{user.username}</h3>
         <img className="image" src={user.avatar_url} alt="User avatar" />
-
         <p>NCnews user</p>
       </div>
     );

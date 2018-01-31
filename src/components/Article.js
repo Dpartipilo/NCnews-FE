@@ -12,7 +12,7 @@ class Article extends Component {
   };
 
   render() {
-    const { created_by, from_topic, title, votes, _id } = this.props;
+    const { created_by, from_topic, title, votes, _id, body } = this.props;
     return (
       <div key={_id} className="box">
         {/* Article Head Left side*/}
@@ -32,11 +32,12 @@ class Article extends Component {
           </div>
         </div>
 
-        {/* Head Body */}
+        {/* Body */}
         <div className="content">
           <Link className="title is-4" to={`/articles/${_id}`}>
             {title}
           </Link>
+          <p>{body}</p>
         </div>
 
         {/* Article Footer */}
