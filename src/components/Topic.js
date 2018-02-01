@@ -25,11 +25,8 @@ class Topic extends Component {
       });
   }
 
-  componentWillReceiveProps(nextProps) {
-    const nextTopicName = nextProps.match.params.name,
-      actualTopicName = this.props.match.params.name;
-
-    if (actualTopicName !== nextTopicName);
+  componentWillReceiveProps({ match }) {
+    const nextTopicName = match.params.name;
     getAllArticlesByTopic(nextTopicName).then(nextArticles => {
       this.setState({
         articles: nextArticles.data
