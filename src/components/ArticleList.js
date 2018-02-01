@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import Article from "./Article";
 
@@ -14,5 +15,11 @@ const ArticleList = props => (
     ))}
   </div>
 );
+
+ArticleList.propTypes = {
+  articles: PropTypes.array,
+  handleVoteUp: PropTypes.func,
+  handleVoteDown: PropTypes.func
+};
 
 export default ArticleList;

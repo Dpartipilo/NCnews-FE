@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 class NewComment extends Component {
   state = {
@@ -57,5 +58,9 @@ class NewComment extends Component {
     );
   }
 }
+
+NewComment.propTypes = {
+  handleAddNewComment: PropTypes.func
+};
 
 export default NewComment;

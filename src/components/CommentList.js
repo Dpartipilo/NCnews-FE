@@ -1,5 +1,5 @@
 import React from "react";
-
+import PropTypes from "prop-types";
 import Comment from "./Comment";
 
 const CommentList = props => (
@@ -15,5 +15,12 @@ const CommentList = props => (
     ))}
   </div>
 );
+
+CommentList.propTypes = {
+  comments: PropTypes.array,
+  handleCommentVoteDown: PropTypes.func,
+  handleCommentVoteUp: PropTypes.func,
+  handleDeleteComment: PropTypes.func
+};
 
 export default CommentList;

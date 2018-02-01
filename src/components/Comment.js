@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import timeFormat from "../utils/timeFormat";
 
@@ -76,4 +77,17 @@ class Comment extends Component {
     );
   }
 }
+
+Comment.propTypes = {
+  body: PropTypes.string,
+  created_at: PropTypes.number,
+  created_by: PropTypes.string,
+  from_topic: PropTypes.string,
+  handleCommentVoteDown: PropTypes.func,
+  handleCommentVoteUp: PropTypes.func,
+  handleDeleteComment: PropTypes.func,
+  votes: PropTypes.number,
+  _id: PropTypes.string
+};
+
 export default Comment;
