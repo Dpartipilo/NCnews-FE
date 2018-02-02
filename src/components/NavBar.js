@@ -25,25 +25,47 @@ class NavBar extends Component {
 
   render() {
     return (
-      <nav className="navbar container box" aria-label="main navigation">
-        <div className="navbar-brand">
-          <Link className="navbar-item" to="/">
-            <span className="title">NCnews</span>
+      <nav
+        className="navbar container box hero is-dark is-bold"
+        aria-label="main navigation"
+      >
+        <div className="navbar-brand navbar-item is-hidden-mobile">
+          <Link to="/">
+            <h1 className="title">Northcoders News</h1>
           </Link>
+        </div>
 
-          <div className="navbar-item has-dropdown is-hoverable">
-            <span className="navbar-link">Topics</span>
-            <div className="navbar-dropdown">
-              {this.state.topics.map(topic => (
-                <Link
-                  key={topic._id}
-                  className="navbar-item"
-                  to={`/topics/${topic.slug}/articles`}
-                >
-                  {topic.title}
-                </Link>
-              ))}
-            </div>
+        <div className="navbar-brand navbar-item is-hidden-tablet">
+          <Link to="/">
+            <h1 className="title">NCnews</h1>
+          </Link>
+        </div>
+
+        <div className="navbar-item has-dropdown is-hoverable">
+          <h3 className="navbar-link is-hidden-touch">Topics</h3>
+
+          <div className="is-hidden-desktop">
+            {this.state.topics.map(topic => (
+              <Link
+                key={topic._id}
+                className="navbar-item"
+                to={`/topics/${topic.slug}/articles`}
+              >
+                {topic.title}
+              </Link>
+            ))}
+          </div>
+
+          <div className="navbar-dropdown is-hidden-touch">
+            {this.state.topics.map(topic => (
+              <Link
+                key={topic._id}
+                className="navbar-item hero is-dark is-bold"
+                to={`/topics/${topic.slug}/articles`}
+              >
+                {topic.title}
+              </Link>
+            ))}
           </div>
         </div>
       </nav>

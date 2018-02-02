@@ -21,9 +21,9 @@ class Comment extends Component {
   render() {
     const { created_by, created_at, votes, _id, body } = this.props;
     return (
-      <div key={_id} className="box">
+      <article key={_id} className="box message">
         {/*Comment Head Left*/}
-        <div className="level">
+        <header className="level">
           <div className="level-left">
             <p className="level-item">
               Created by:
@@ -31,24 +31,24 @@ class Comment extends Component {
                 {created_by}
               </Link>
             </p>
-            <p className="level-item">
+            <time className="level-item">
               on {timeFormat(created_at, "dd/MM/yyyy")}
-            </p>
+            </time>
           </div>
-        </div>
+        </header>
 
         {/* Comment Body */}
-        <div className="content">
+        <section className="content">
           <p>{body}</p>
-        </div>
+        </section>
 
         {/* Comment Footer */}
-        <div className="level">
-          <div className="level-left">
+        <footer className="">
+          <div className="is-inline-flex">
             <span
               onClick={this.submitCommentVoteUp}
               id="clickable"
-              className="icon is-medium level-item "
+              className="icon is-medium"
             >
               <i className="far fa-thumbs-up fa-lg" />
             </span>
@@ -58,13 +58,13 @@ class Comment extends Component {
             <span
               onClick={this.submitCommentVoteDown}
               id="clickable"
-              className="icon is-medium level-item"
+              className="icon is-medium"
             >
               <i className="far fa-thumbs-down fa-lg" />
             </span>
           </div>
 
-          <div className="level-right">
+          <div className="is-inline-flex is-pulled-right">
             <button
               onClick={this.SubmitDeleteComment}
               className="button is-danger"
@@ -72,8 +72,8 @@ class Comment extends Component {
               Delete
             </button>
           </div>
-        </div>
-      </div>
+        </footer>
+      </article>
     );
   }
 }

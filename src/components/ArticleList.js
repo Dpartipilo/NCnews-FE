@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import Article from "./Article";
 
 const ArticleList = props => (
-  <div className="container box">
+  <section className="container box">
     {props.articles.map(article => (
       <Article
         {...article}
@@ -13,7 +13,7 @@ const ArticleList = props => (
         handleVoteDown={props.handleVoteDown}
       />
     ))}
-  </div>
+  </section>
 );
 
 ArticleList.propTypes = {

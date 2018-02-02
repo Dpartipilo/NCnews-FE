@@ -15,9 +15,9 @@ class Article extends Component {
   render() {
     const { created_by, from_topic, title, votes, _id, body } = this.props;
     return (
-      <div key={_id} className="box">
+      <article key={_id} className="box message">
         {/* Article Head Left side*/}
-        <div className="level">
+        <header className="level">
           <div className="level-left">
             <p className="level-item">
               Created by:
@@ -28,42 +28,40 @@ class Article extends Component {
           </div>
 
           {/* Head Right side */}
-          <div className="level-right">
+          <div className="level-right is-hidden-mobile">
             <p className="level-item">Topic: {from_topic}</p>
           </div>
-        </div>
+        </header>
 
         {/* Body */}
-        <div className="content">
-          <Link className="title is-4" to={`/articles/${_id}`}>
+        <section className="content">
+          <Link className="title is-5" to={`/articles/${_id}`}>
             {title}
           </Link>
-          <p>{body}</p>
-        </div>
+          <p className="has-text-justified">{body}</p>
+        </section>
 
         {/* Article Footer */}
-        <div className="level">
-          <div className="level-left">
-            <span
-              onClick={this.submitVoteUp}
-              id="clickable"
-              className="icon is-medium  level-item "
-            >
-              <i className="far fa-thumbs-up fa-lg" />
-            </span>
+        <footer className="is-inline-flex">
+          <span
+            onClick={this.submitVoteUp}
+            id="clickable"
+            className="icon is-medium"
+          >
+            <i className="far fa-thumbs-up fa-lg" />
+          </span>
 
-            <p className="level-item ">{votes}</p>
+          <p className="level-item ">{votes}</p>
 
-            <span
-              onClick={this.submitVoteDown}
-              id="clickable"
-              className="icon is-medium  level-item"
-            >
-              <i className="far fa-thumbs-down fa-lg" />
-            </span>
-          </div>
-        </div>
-      </div>
+          <span
+            onClick={this.submitVoteDown}
+            id="clickable"
+            className="icon is-medium"
+          >
+            <i className="far fa-thumbs-down fa-lg" />
+          </span>
+        </footer>
+      </article>
     );
   }
 }

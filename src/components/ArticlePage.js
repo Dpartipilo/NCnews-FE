@@ -143,24 +143,24 @@ class ArticlePage extends Component {
   render() {
     const { article, comments } = this.state;
     return (
-      <div className="container box">
+      <section className="container box">
         <Article
           {...article}
           handleVoteUp={this.voteArticleUp}
           handleVoteDown={this.voteArticleDown}
         />
 
-        <p className="subtitle">Leave your comments</p>
+        <p>Leave your comments</p>
         <NewComment handleAddNewComment={this.AddNewComment} />
-        <p className="title is-4"> Last Comments</p>
 
+        <p className="title is-4"> Last Comments</p>
         <CommentList
           comments={comments}
           handleCommentVoteUp={this.voteCommentUp}
           handleCommentVoteDown={this.voteCommentDown}
           handleDeleteComment={this.deleteComment}
         />
-      </div>
+      </section>
     );
   }
 }

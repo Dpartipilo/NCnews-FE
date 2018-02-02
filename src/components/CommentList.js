@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Comment from "./Comment";
 
 const CommentList = props => (
-  <div className="box">
+  <section className="box">
     {props.comments.map(comment => (
       <Comment
         {...comment}
@@ -13,7 +13,7 @@ const CommentList = props => (
         handleDeleteComment={props.handleDeleteComment}
       />
     ))}
-  </div>
+  </section>
 );
 
 CommentList.propTypes = {
