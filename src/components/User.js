@@ -23,12 +23,16 @@ class User extends Component {
 
   render() {
     const { user } = this.state;
+    // console.log(this.props.history.goBack);
     return (
-      <div className="container box">
-        <h1 className="title">{user.name}</h1>
-        <h3 className="subtitle">{user.username}</h3>
-        <img className="image" src={user.avatar_url} alt="User avatar" />
-        <p>NCnews user</p>
+      <div className="modal is-active">
+        <div onClick={this.props.history.goBack} className="modal-background" />
+        <div className="modal-content">
+          <h1 className="title">{user.name}</h1>
+          <h3 className="subtitle">{user.username}</h3>
+          <img className="image" src={user.avatar_url} alt="User avatar" />
+          <p>NCnews user</p>
+        </div>
       </div>
     );
   }
