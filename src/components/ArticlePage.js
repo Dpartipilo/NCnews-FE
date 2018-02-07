@@ -34,7 +34,6 @@ class ArticlePage extends Component {
           article: article.data,
           loading: false
         });
-        // console.log(article);
       })
       .catch(err => {
         console.log(err);
@@ -45,7 +44,6 @@ class ArticlePage extends Component {
         this.setState({
           comments: comments.data
         });
-        // console.log(comments);
       })
       .catch(err => {
         console.log(err);
@@ -55,7 +53,6 @@ class ArticlePage extends Component {
   voteArticleUp = article_id => {
     articleVoteUp(article_id)
       .then(res => {
-        // console.log(res);
         this.setState({
           article: res.data.article
         });
@@ -68,7 +65,6 @@ class ArticlePage extends Component {
   voteArticleDown = article_id => {
     articleVoteDown(article_id)
       .then(res => {
-        // console.log(res);
         this.setState({
           article: res.data.article
         });
@@ -81,7 +77,6 @@ class ArticlePage extends Component {
   voteCommentUp = comment_id => {
     commentVoteUp(comment_id)
       .then(votedComment => {
-        // console.log(res);
         this.setState({
           comments: this.state.comments.map(comment => {
             if (comment._id === comment_id) {
@@ -99,7 +94,6 @@ class ArticlePage extends Component {
   voteCommentDown = comment_id => {
     commentVoteDown(comment_id)
       .then(votedComment => {
-        // console.log(votedComment);
         this.setState({
           comments: this.state.comments.map(comment => {
             if (comment._id === comment_id) {
@@ -121,7 +115,6 @@ class ArticlePage extends Component {
         this.setState({
           comments: [comment.data, ...this.state.comments]
         });
-        // console.log(comment);
       })
       .catch(err => {
         console.log(err);

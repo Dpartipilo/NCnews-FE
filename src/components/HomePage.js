@@ -16,7 +16,6 @@ class HomePage extends Component {
   componentDidMount() {
     getAllArticles()
       .then(articles => {
-        // console.log(articles);
         this.setState({
           articles: articles.data,
           loading: false
@@ -30,7 +29,6 @@ class HomePage extends Component {
   voteUp = article_id => {
     articleVoteUp(article_id)
       .then(res => {
-        // console.log(res);
         this.setState({
           articles: this.state.articles.map(article => {
             if (article._id === article_id) {
@@ -48,7 +46,6 @@ class HomePage extends Component {
   voteDown = article_id => {
     articleVoteDown(article_id)
       .then(res => {
-        // console.log(res);
         this.setState({
           articles: this.state.articles.map(article => {
             if (article._id === article_id) {

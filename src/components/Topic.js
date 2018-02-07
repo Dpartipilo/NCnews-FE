@@ -17,7 +17,6 @@ class Topic extends Component {
     const { name } = this.props.match.params;
     getAllArticlesByTopic(name)
       .then(articles => {
-        // console.log(articles);
         this.setState({
           articles: articles.data,
           loading: false

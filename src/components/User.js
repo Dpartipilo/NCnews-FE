@@ -14,7 +14,6 @@ class User extends Component {
         this.setState({
           user: user.data
         });
-        // console.log(user);
       })
       .catch(err => {
         console.log(err);
@@ -23,7 +22,6 @@ class User extends Component {
 
   render() {
     const { user } = this.state;
-    // console.log(this.props.history.goBack);
     return (
       <div className="modal is-active">
         <div onClick={this.props.history.goBack} className="modal-background" />
