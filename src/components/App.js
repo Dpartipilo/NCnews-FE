@@ -7,6 +7,7 @@ import NavBar from "./NavBar";
 import HomePage from "./HomePage";
 import Topic from "./Topic";
 import ArticlePage from "./ArticlePage";
+import NoMatch from "./NoMatch";
 
 class App extends Component {
   render() {
@@ -19,6 +20,7 @@ class App extends Component {
             <Route path="/topics/:name/articles" component={Topic} />
             <Route path="/articles/:article_id" component={ArticlePage} />
             <Route path="/users/:username" component={User} />
+            <Route component={NoMatch} />
           </Switch>
         </div>
       </BrowserRouter>
