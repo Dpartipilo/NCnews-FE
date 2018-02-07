@@ -19,17 +19,14 @@ class Article extends Component {
         {/* Article Head Left side*/}
         <header className="level">
           <div className="level-left">
-            <p className="level-item">
-              Created by:
-              <Link className="is-bold" to={`/users/${created_by}`}>
-                {created_by}
-              </Link>
+            <p>
+              Created by: <Link to={`/users/${created_by}`}>{created_by}</Link>
             </p>
           </div>
 
           {/* Head Right side */}
           <div className="level-right is-hidden-mobile">
-            <p className="level-item">Topic: {from_topic}</p>
+            <p className="level-item">Topic: {from_topic.toUpperCase()}</p>
           </div>
         </header>
 
