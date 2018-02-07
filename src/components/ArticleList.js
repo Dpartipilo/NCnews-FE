@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import Article from "./Article";
 
 const ArticleList = props => (
-  <section className="container box">
+  <section id="fadeIn" className="container box">
     <div className="columns is-multiline">
       {props.articles.map(article => (
         <div key={article._id} className="column is-half">

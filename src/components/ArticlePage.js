@@ -147,7 +147,7 @@ class ArticlePage extends Component {
     const { article, comments, loading } = this.state;
     if (loading) return <Loading />;
     return (
-      <section className="container box">
+      <section id="fadeIn" className="container box">
         <Article
           {...article}
           handleVoteUp={this.voteArticleUp}
