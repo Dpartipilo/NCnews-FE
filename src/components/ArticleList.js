@@ -7,10 +7,9 @@ const ArticleList = props => (
   <section className="container box">
     <div className="columns is-multiline">
       {props.articles.map(article => (
-        <div className="column is-half">
+        <div key={article._id} className="column is-half">
           <Article
             {...article}
-            key={article._id}
             handleVoteUp={props.handleVoteUp}
             handleVoteDown={props.handleVoteDown}
           />

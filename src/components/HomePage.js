@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 
 import ArticleList from "./ArticleList";
+import Loading from "./Loading";
 import { getAllArticles, articleVoteUp, articleVoteDown } from "../api";
 
 class HomePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      articles: []
+      articles: [],
+      loading: true
     };
   }
 
@@ -16,7 +18,8 @@ class HomePage extends Component {
       .then(articles => {
         // console.log(articles);
         this.setState({
-          articles: articles.data
+          articles: articles.data,
+          loading: false
         });
       })
       .catch(error => {
@@ -61,12 +64,14 @@ class HomePage extends Component {
   };
 
   render() {
-    let noBodyArticles = this.state.articles.map(article => {
+    const { loading } = this.state;
+    const noBodyArticles = this.state.articles.map(article => {
       for (let key in article) {
         if (key === "body") article[key] = null;
       }
       return article;
     });
+    if (loading) return <Loading />;
     return (
       <ArticleList
         articles={noBodyArticles}

@@ -14,13 +14,15 @@ import {
 import CommentList from "./CommentList";
 import Article from "./Article";
 import NewComment from "./NewComment";
+import Loading from "./Loading";
 
 class ArticlePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       article: {},
-      comments: []
+      comments: [],
+      loading: true
     };
   }
 
@@ -29,7 +31,8 @@ class ArticlePage extends Component {
     getArticleById(article_id)
       .then(article => {
         this.setState({
-          article: article.data
+          article: article.data,
+          loading: false
         });
         // console.log(article);
       })
@@ -141,7 +144,8 @@ class ArticlePage extends Component {
   };
 
   render() {
-    const { article, comments } = this.state;
+    const { article, comments, loading } = this.state;
+    if (loading) return <Loading />;
     return (
       <section className="container box">
         <Article
