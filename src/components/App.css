@@ -1,3 +1,7 @@
 #clickable{
   cursor: pointer;
 }
+
+.box{
+  height: 100%;
+}

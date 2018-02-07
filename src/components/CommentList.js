@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Comment from "./Comment";
 
 const CommentList = props => (
-  <section className="box">
+  <section>
     {props.comments.map(comment => (
       <Comment
         {...comment}

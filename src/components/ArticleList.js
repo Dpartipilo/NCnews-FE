@@ -5,14 +5,18 @@ import Article from "./Article";
 
 const ArticleList = props => (
   <section className="container box">
-    {props.articles.map(article => (
-      <Article
-        {...article}
-        key={article._id}
-        handleVoteUp={props.handleVoteUp}
-        handleVoteDown={props.handleVoteDown}
-      />
-    ))}
+    <div className="columns is-multiline">
+      {props.articles.map(article => (
+        <div className="column is-half">
+          <Article
+            {...article}
+            key={article._id}
+            handleVoteUp={props.handleVoteUp}
+            handleVoteDown={props.handleVoteDown}
+          />
+        </div>
+      ))}
+    </div>
   </section>
 );
 

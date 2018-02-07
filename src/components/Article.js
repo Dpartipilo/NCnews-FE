@@ -42,24 +42,26 @@ class Article extends Component {
         </section>
 
         {/* Article Footer */}
-        <footer className="is-inline-flex">
-          <span
-            onClick={this.submitVoteUp}
-            id="clickable"
-            className="icon is-medium"
-          >
-            <i className="far fa-thumbs-up fa-lg" />
-          </span>
+        <footer className="level">
+          <div className="level-item">
+            <span
+              onClick={this.submitVoteUp}
+              id="clickable"
+              className="icon is-medium"
+            >
+              <i className="far fa-thumbs-up fa-lg" />
+            </span>
 
-          <p className="level-item ">{votes}</p>
+            <p className="level-item ">{votes}</p>
 
-          <span
-            onClick={this.submitVoteDown}
-            id="clickable"
-            className="icon is-medium"
-          >
-            <i className="far fa-thumbs-down fa-lg" />
-          </span>
+            <span
+              onClick={this.submitVoteDown}
+              id="clickable"
+              className="icon is-medium"
+            >
+              <i className="far fa-thumbs-down fa-lg" />
+            </span>
+          </div>
         </footer>
       </article>
     );
