@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 import { getAllTopics } from "../api";
 
@@ -7,7 +7,8 @@ class NavBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      topics: []
+      topics: [],
+      isActive: false
     };
   }
 
@@ -23,49 +24,80 @@ class NavBar extends Component {
       });
   }
 
+  toggleIsActive = () => {
+    this.setState({
+      isActive: !this.state.isActive ? "is-active" : ""
+    });
+  };
+
   render() {
+    const { isActive } = this.state;
     return (
       <nav
-        className="navbar container box hero is-dark is-bold"
+        className="navbar is-transparent box is-dark"
         aria-label="main navigation"
       >
-        <div className="navbar-brand navbar-item is-hidden-mobile">
+        <div className="navbar-brand is-inline-flex">
           <Link to="/">
-            <h1 className="title">Northcoders News</h1>
+            <h1 id="brand" className="navbar-item title is-hidden-mobile">
+              Northcoders News
+            </h1>
+          </Link>
+          <Link to="/">
+            <h1 id="brand" className="navbar-item title is-hidden-tablet">
+              NCnews
+            </h1>
           </Link>
         </div>
 
-        <div className="navbar-brand navbar-item is-hidden-tablet">
-          <Link to="/">
-            <h1 className="title">NCnews</h1>
-          </Link>
-        </div>
-
-        <div className="navbar-item has-dropdown is-hoverable">
-          <h3 className="navbar-link is-hidden-touch">Topics</h3>
-
-          <div className="is-hidden-desktop">
-            {this.state.topics.map(topic => (
-              <Link
-                key={topic._id}
-                className="navbar-item"
-                to={`/topics/${topic.slug}/articles`}
-              >
-                {topic.title}
-              </Link>
-            ))}
+        <div className="navbar-menu ">
+          <div className="navbar-start">
+            <div className="is-inline-flex">
+              {this.state.topics.map(topic => (
+                <NavLink
+                  key={topic._id}
+                  id="topic"
+                  activeClassName="selected"
+                  className="topic navbar-item"
+                  to={`/topics/${topic.slug}/articles`}
+                >
+                  {topic.title}
+                </NavLink>
+              ))}
+            </div>
           </div>
+        </div>
 
-          <div className="navbar-dropdown is-hidden-touch">
-            {this.state.topics.map(topic => (
-              <Link
-                key={topic._id}
-                className="navbar-item hero is-dark is-bold"
-                to={`/topics/${topic.slug}/articles`}
-              >
-                {topic.title}
-              </Link>
-            ))}
+        <div
+          onClick={this.toggleIsActive}
+          id="topic"
+          className={`navbar-item dropdown ${isActive} is-boxed is-hidden-desktop`}
+        >
+          <div className="dropdown-trigger">
+            <div
+              className=""
+              aria-haspopup="true"
+              aria-controls="dropdown-menu"
+            >
+              <span>Topics </span>
+              <span className="icon is-small">
+                <i className="fas fa-angle-down" aria-hidden="true" />
+              </span>
+            </div>
+          </div>
+          <div className="dropdown-menu" role="menu">
+            <div className="dropdown-content">
+              {this.state.topics.map(topic => (
+                <Link
+                  key={topic._id}
+                  id="dropdownTopic"
+                  className="dropdown-item"
+                  to={`/topics/${topic.slug}/articles`}
+                >
+                  {topic.title}
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </nav>
